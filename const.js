@@ -1,6 +1,7 @@
 const commands = `
 /start - Перезапустить бота
 /help - Помощь
+count(без /) [число1] [число2] - счет
 `
 const text1 = `
 1 Текст для проверки обработчика и <a href="https://youtube.com/">ссылка</a>

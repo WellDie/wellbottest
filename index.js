@@ -5,10 +5,18 @@ require('dotenv').config()
 const text = require('./const')
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
-bot.start((ctx) => ctx.reply(`Привет ${ctx.message.from.first_name ? ctx.message.from.first_name : 'незнакомец'}!`))
+bot.start((ctx) => ctx.reply(`Здравствуйте, ${ctx.message.from.first_name ? ctx.message.from.first_name : 'дорогой незнакомец'}!`))
 bot.help((ctx) => ctx.reply(text.commands))
+bot.on('message', (ctx) => {
+    const text = ctx.message.text;
+    if (text.startsWith('count ')) {
+      const [_, a, b] = text.split(' ').map(e => Number(e));
+      console.log(a, b);
+      ctx.reply(`${a+b} ${a-b} ${a/b} ${a*b}`);
+    }
+});
 
-bot.command('course', async (ctx)=> {
+bot.command('allgym', async (ctx)=> {
     try {
         await ctx.replyWithHTML('<b>Курсы</b>', Markup.inlineKeyboard(
             [
