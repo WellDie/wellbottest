@@ -5,24 +5,27 @@ require('dotenv').config()
 const text = require('./const')
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
-bot.start((ctx) => ctx.reply(`Здравствуйте, ${ctx.message.from.first_name ? ctx.message.from.first_name : 'дорогой незнакомец'}!`))
+bot.start((ctx) => ctx.reply(`Привет ${ctx.message.from.first_name ? ctx.message.from.first_name : 'незнакомец'}!`))
 bot.help((ctx) => ctx.reply(text.commands))
 bot.on('message', (ctx) => {
     const text = ctx.message.text;
     if (text.startsWith('count ')) {
       const [_, a, b] = text.split(' ').map(e => Number(e));
       console.log(a, b);
-      ctx.reply(`${a+b} ${a-b} ${a/b} ${a*b}`);
+      ctx.reply(`Сложение: ${a+b} Вычитание: ${a-b} Деление: ${a/b} Умножение: ${a*b}`);
+    }
+    else{
+        ctx.reply(`Привет дорогой друг!`)
+        ctx.replyWithSticker('CAACAgEAAxkBAAEDHVlhbwNy-ZR8tq-G92I8CCm4pZav4AACCgADuqzRTfskvg66_NEkIQQ')
+        ctx.reply(`Тебя приветствует бот WEgor, созданный в рамках проекта`)
+        ctx.reply(`Егора Рукавишникова`)
+        ctx.reply(`Пропиши /help чтобы узнать все!`)
     }
 });
 
-bot.command('allgym', async (ctx)=> {
+bot.command('course', async (ctx)=> {
     try {
-        await ctx.replyWithHTML('<b>Курсы</b>', Markup.inlineKeyboard(
-            [
-                [Markup.button.callback('Редакторы', 'btn_1'),Markup.button.callback('Обзоры', 'btn_2'), Markup.button.callback('кексы', 'btn_3')]
-            ]
-        ))
+        ctx.reply('Команда курс работает!')
     } catch(e){console.error(e)}
 })
 
