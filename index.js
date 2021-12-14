@@ -173,6 +173,19 @@ bot.action('btn_8', async (ctx) =>{
         console.error(e)
     }
 })
+bot.action('btn_9', async (ctx) =>{
+    try{
+        await ctx.answerCbQuery()
+        await ctx.reply('                ')
+        await ctx.reply('Официальный сайт discrodjs - https://discord.js.org/#/')
+        await ctx.reply('Некоторые источники habr по функциям - https://habr.com/ru/post/488412/')
+        await ctx.reply('Видеохостинг Youtube - https://www.youtube.com/')
+        await ctx.reply('Бот для создания ботов - @BotFather(он в телеграмме)')
+        await ctx.reply('Хостинг - https://heroku.com')
+    }catch(e){
+        console.error(e)
+    }
+})
 bot.launch()
 // Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'))
